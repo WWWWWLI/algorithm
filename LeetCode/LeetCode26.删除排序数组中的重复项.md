@@ -124,3 +124,41 @@
 其实本题不用将数组长度改变，只需将数组前面的元素改成唯一出现的元素即可
 
 这样的话就不需要每次修改数组时，初始化迭代器了
+
+初始化两个迭代器it1,it2
+
+当\*it1与\*it2相同时++it2，it1不动
+
+当\*it1与\*it2不同时，将*it2赋值给it1的下一个位置，然后增加length
+
+---
+
+	class Solution {
+	public:
+		int removeDuplicates(vector<int>& nums) {
+			if (nums.size() == 0) return 0;
+	        int length = 1;
+			vector<int>::iterator it1 = nums.begin();
+	        vector<int>::iterator it2 = nums.begin();
+			for (; it2 != nums.end();)
+			{
+				if (*it1 == *it2)
+				{
+	
+					it2++;
+				}
+				else
+				{
+					it1++;
+	                *it1 = *it2;
+	                it2++;
+	                length++;
+				}
+				
+			}
+	
+			return length;
+		}
+	};
+
+---
